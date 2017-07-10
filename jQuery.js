@@ -18,5 +18,16 @@ window.$ = function(select) {
 
 
 
+	//增加元素class
+	array.addClass = function(className) {
+		for(let i=0; i<array.length; i++) {
+			array[i].classList.add(className)
+		}
+		return array
+	}
+
+
+
+
 	return array
 }
