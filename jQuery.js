@@ -1,20 +1,32 @@
 window.$ = function(select) {
-	let element = querySelectorAll(select)
-	let array = []
-	for(let i=0; i<element.length; i++) {
-		array.push(element[i])
-	}
+    let array = []
 
 
+	//判断传入选择器或元素数组
+    if (typeof select === 'string') {
+        let element = document.querySelectorAll(select);
+        for (let i = 0; i < element.length; i++) {
+            array.push(element[i])
+        }
+    } else {
+        for (let i = 0; i < select.length; i++) {
+            array.push(select[i])
+        }
+        array.parent =select.parent
+    }
+
+
+
+
+
+	
 
 	//事件绑定
 	array.on = function(event,handle) {
 		for(let i=0; i<array.length; i++) {
 			array[i].addEventListener(event,handle)
 		}
-		return array
-	}
-
+    }
 
 
 	//增加元素class
@@ -23,7 +35,7 @@ window.$ = function(select) {
 			array[i].classList.add(className)
 		}
 		return array
-	}
+	};
 	
 
 
@@ -43,7 +55,7 @@ window.$ = function(select) {
             array[i].classList.toggle(className)
         }
         return array
-    }
+    };
 
 
 
@@ -51,13 +63,13 @@ window.$ = function(select) {
     //这里我们把获取每一个元素的text，组成数组
     array.text = function(value) {
     	if(value === undefined) {
-    		let result = []
+    		let result = [];
     		for(let i=0; i<array.length; i++) {
     			result.push(array[i].textContent)
     		}
     	} else {
     		for(let i=0; i<array.length; i++) {
-    			array[0].textContent = value
+    			array[i].textContent = value
     		}
     		return array
     	}
@@ -78,8 +90,30 @@ window.$ = function(select) {
 			}
 			return array
 		}
-}    
+    }
 
 
-	return array
+
+    //查找元素find
+    array.find = function (selector) {
+        let result = [];
+ 		for(let i=0; i<array.length; i++) {
+        	let elements = array[i].querySelectorAll(selector);
+            for(let j=0; j<elements.length; j++) {
+        	    result.push(elements[j])
+        	}
+        }
+        result.parent = array  //记录父亲信息
+        return $(result)
+    }
+
+
+
+    //寻找父亲
+	array.end = function() {
+    	return array.parent
+	}
+
+
+    return array
 }

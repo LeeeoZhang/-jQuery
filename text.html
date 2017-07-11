@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery 测试</title>
+	<style>
+		div {
+			border: 1px solid black;
+		}
+		.active {
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="box1">
+		<p>hello world</p>
+		<p>hello world</p>
+		<p>hello world</p>
+		<p>hello world</p>
+	</div>
+	<div id="box2">
+		<p>hello world</p>
+		<p>hello world</p>
+		<p>hello world</p>
+		<p>hello world</p>
+		<p>hello world</p>
+	</div>
+	<script src="jQuery.js"></script>
+	<script>
+		$("#box1").on("click",function() {
+		    $("#box1").toggleClass("active")
+		})
+	</script>
+</body>
+</html>
