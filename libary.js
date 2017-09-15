@@ -1,4 +1,4 @@
-window.$ = function(select) {
+window.dom = function(select) {
     let array = []
 
 
@@ -16,10 +16,6 @@ window.$ = function(select) {
     }
 
 
-
-
-
-	
 
 	//事件绑定
 	array.on = function(event,handle) {
